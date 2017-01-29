@@ -1,57 +1,22 @@
 <style type="text/css">
-	.calendar .element{
-		text-align: center;
-		border: 1px solid black;
-		display: inline-block;
-		width: 30px;
-	}
-	.calendar .row{
-		text-align: center;
-	}
 	.calendar{
 		display: inline-block;
+		width: 155px;
+		text-align: center;
+	}
+	.calendar div{
+		display: inline-block;
+		width: 20px;
+		border: 1px solid black;
 	}
 </style>
 
-<div class="calendar" ng-init="m=['jan','feb','mar','apr','may','jun','july','aug','sep','oct','nov','dec']">
-	
-	<div class="row">
-		<span>{{m[date.getMonth()] | uppercase}} {{date.getFullYear()}}</span>
-	</div>
-	<div class="row">
-		<div class="element" ng-repeat="i in [1,2,3,4,5,6,7]">
-			<span ng-if="i<=d">{{'-'}}</span>
-			<span ng-if="i>d">{{i-d}}</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="element" ng-repeat="i in [8,9,10,11,12,13,14]">
-			<span ng-if="i<=d">{{' '}}</span>
-			<span ng-if="i>d">{{i-d}}</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="element" ng-repeat="i in [15,16,17,18,19,20,21]">
-			<span ng-if="i<=d">{{'-'}}</span>
-			<span ng-if="i>d">{{i-d}}</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="element" ng-repeat="i in [22,23,24,25,26,27,28]">
-			<span ng-if="i<=d">{{'-'}}</span>
-			<span ng-if="i>d">{{k=(i-d)}}</span>
-		</div>
-	</div>
-	<div class="row" ng-if="(29-d)<days">
-		<div class="element" ng-repeat="i in [29,30,31,32,33,34,35]">
-			<span ng-if="(i-d)>days">{{'-'}}</span>
-			<span ng-if="(i-d)<=days">{{k=(i-d)}}</span>
-		</div>
-	</div>
-	<div class="row" ng-if="(35-d)<days">
-		<div class="element" ng-repeat="i in [36,37,38,39,40,41,42]">
-			<span ng-if="(i-d)>days">{{'-'}}</span>
-			<span ng-if="(i-d)<=days">{{i-d}}</span>
-		</div>
-	</div>
+<div class="calendar" ng-init='monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+];'>
+	<span>{{monthNames[date.getMonth()]}}</span>
+	<span>{{date.getFullYear()}}</span>
+	<br>
+	<div ng-repeat="i in days track by $index">{{i}}</div>
 </div>
